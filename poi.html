@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>何沐宸 | 個人數位名片 Profile</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Noto Sans TC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        sunrise: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            400: '#fb923c',
+                            500: '#ff5e62',
+                            600: '#ff414d',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-6px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAF8F5;
+            color: #1E293B;
+            font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 40px -15px rgba(255, 94, 98, 0.12), 0 8px 16px -8px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Gradient Glow & Text Effects */
+        .vibrant-gradient {
+            background: linear-gradient(135deg, #FF5E62 0%, #FF9966 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #FF414D 0%, #FF8A00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .avatar-glow {
+            box-shadow: 0 0 25px rgba(255, 94, 98, 0.35);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between items-center relative overflow-x-hidden selection:bg-rose-500 selection:text-white px-4 py-8 sm:py-12">
+
+    <!-- Ambient Vivid Background Light Orbs -->
+    <div class="fixed top-[-10%] left-[-10%] w-[450px] h-[450px] bg-amber-300/40 rounded-full blur-[100px] -z-10 pointer-events-none animate-pulse-slow"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-rose-400/30 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+    <div class="fixed top-[40%] right-[10%] w-[300px] h-[300px] bg-pink-300/30 rounded-full blur-[90px] -z-10 pointer-events-none"></div>
+
+    <!-- Main Container -->
+    <main class="w-full max-w-xl mx-auto my-auto">
+        <div class="glass-card rounded-[2.5rem] p-6 sm:p-10 relative overflow-hidden transition-all duration-300">
+            
+            <!-- Top Vivid Accent Bar -->
+            <div class="absolute top-0 left-0 right-0 h-3 vibrant-gradient"></div>
+
+            <!-- Single Photo Spot (Centered Avatar Box) -->
+            <div class="flex flex-col items-center mt-2 mb-6">
+                <div class="relative group cursor-pointer">
+                    <!-- Photo Container -->
+                    <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-full p-1.5 vibrant-gradient avatar-glow transition-transform duration-300 group-hover:scale-105">
+                        <div class="w-full h-full rounded-full overflow-hidden bg-white border-2 border-white relative">
+                            <img id="user-photo" 
+                                 src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF6B6B'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-3.8-.85-5.05-2.2.03-1.68 3.37-2.6 5.05-2.6s5.02.92 5.05 2.6C15.8 19.15 14.03 20 12 20z'/></svg>" 
+                                 alt="何沐宸的個人照片" 
+                                 class="w-full h-full object-cover">
+                            
+                            <!-- Hover Overlay for Image Upload -->
+                            <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-xs text-white opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition-opacity duration-200">
+                                <i class="fa-solid fa-camera text-xl mb-1"></i>
+                                <span class="text-[10px] font-bold tracking-wider uppercase">上傳照片</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hidden File Input -->
+                    <input type="file" id="photo-input" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
+
+                    <!-- Photo Tag Badge -->
+                    <label for="photo-input" class="absolute -bottom-1 -right-1 bg-white text-slate-700 hover:text-rose-600 p-2 rounded-full shadow-md border border-slate-100 cursor-pointer transition transform hover:scale-110" title="點擊換照片">
+                        <i class="fa-solid fa-pen text-xs text-rose-500"></i>
+                    </label>
+                </div>
+                <span class="text-[11px] font-medium text-slate-400 mt-2 flex items-center space-x-1">
+                    <i class="fa-solid fa-sparkles text-amber-400"></i>
+                    <span>點擊上方圖像可替換個人照片</span>
+                </span>
+            </div>
+
+            <!-- Identity Header -->
+            <div class="text-center space-y-3 mb-8">
+                <!-- Department Tag -->
+                <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-rose-50 border border-rose-100 text-rose-600 font-bold text-xs shadow-xs">
+                    <i class="fa-solid fa-graduation-cap text-rose-500"></i>
+                    <span>開南大學 資訊管理學系</span>
+                </div>
+
+                <!-- Name -->
+                <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">
+                    <span class="gradient-text">何沐宸</span>
+                </h1>
+
+                <!-- One-line Motto Card -->
+                <div class="bg-gradient-to-r from-orange-50 via-rose-50 to-pink-50 border border-rose-100/80 rounded-2xl p-4 shadow-xs">
+                    <p class="text-slate-700 text-sm sm:text-base font-semibold italic">
+                        「喜歡簡單生活，也喜歡認真對待每一件事。」
+                    </p>
+                </div>
+            </div>
+
+            <!-- Compact Skill & Interest Badges -->
+            <div class="mb-8">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 text-center mb-3">
+                    專長與興趣 ‧ SKILLS & INTERESTS
+                </h2>
+                <div class="flex flex-wrap justify-center gap-2.5">
+                    <div class="px-4 py-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center space-x-2 hover:border-rose-300 transition hover:-translate-y-0.5">
+                        <span class="text-base">💻</span>
+                        <span class="text-xs sm:text-sm font-bold text-slate-800">寫代碼</span>
+                    </div>
+                    <div class="px-4 py-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center space-x-2 hover:border-amber-300 transition hover:-translate-y-0.5">
+                        <span class="text-base">📐</span>
+                        <span class="text-xs sm:text-sm font-bold text-slate-800">微積分</span>
+                    </div>
+                    <div class="px-4 py-2.5 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center space-x-2 hover:border-pink-300 transition hover:-translate-y-0.5">
+                        <span class="text-base">💤</span>
+                        <span class="text-xs sm:text-sm font-bold text-slate-800">睡覺充電</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vibrant Contact Action Buttons -->
+            <div class="space-y-3">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 text-center mb-3">
+                    快速聯繫 ‧ CONTACT
+                </h2>
+
+                <!-- Email Card -->
+                <div onclick="copyText('bd1151011@vnus.lit.edu.tw', 'Email 信箱已複製')" 
+                     class="group p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200/90 hover:border-rose-400 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer flex items-center justify-between">
+                    <div class="flex items-center space-x-3.5 overflow-hidden">
+                        <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center text-lg flex-shrink-0 group-hover:bg-rose-500 group-hover:text-white transition duration-200">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <div class="truncate">
+                            <span class="text-[11px] font-semibold text-slate-400 block">電子郵件 Email</span>
+                            <span class="text-xs sm:text-sm font-bold text-slate-800 truncate block group-hover:text-rose-600 transition">
+                                bd1151011@vnus.lit.edu.tw
+                            </span>
+                        </div>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 group-hover:bg-rose-50 group-hover:text-rose-600 transition flex-shrink-0">
+                        <i class="fa-regular fa-copy mr-1"></i>複製
+                    </span>
+                </div>
+
+                <!-- Line Card -->
+                <div onclick="copyText('何沐宸', 'Line 暱稱已複製')" 
+                     class="group p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200/90 hover:border-emerald-400 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer flex items-center justify-between">
+                    <div class="flex items-center space-x-3.5">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg flex-shrink-0 group-hover:bg-emerald-500 group-hover:text-white transition duration-200">
+                            <i class="fa-brands fa-line"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-semibold text-slate-400 block">Line 暱稱</span>
+                            <span class="text-xs sm:text-sm font-bold text-slate-800 group-hover:text-emerald-600 transition">
+                                何沐宸
+                            </span>
+                        </div>
+                    </div>
+                    <span class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 group-hover:bg-emerald-50 group-hover:text-emerald-600 transition">
+                        <i class="fa-regular fa-copy mr-1"></i>複製
+                    </span>
+                </div>
+
+                <!-- Instagram Card -->
+                <div onclick="copyText('watharinsaeher', 'Instagram 帳號已複製')" 
+                     class="group p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200/90 hover:border-pink-400 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer flex items-center justify-between">
+                    <div class="flex items-center space-x-3.5">
+                        <div class="w-10 h-10 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center text-lg flex-shrink-0 group-hover:bg-pink-500 group-hover:text-white transition duration-200">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-semibold text-slate-400 block">Instagram</span>
+                            <span class="text-xs sm:text-sm font-bold text-slate-800 group-hover:text-pink-600 transition">
+                                @watharinsaeher
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <a href="https://instagram.com/watharinsaeher" target="_blank" onclick="event.stopPropagation();" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-pink-50 text-pink-600 hover:bg-pink-100 transition" title="開啟 IG 頁面">
+                            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>開啟
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-8 text-center text-xs font-medium text-slate-400">
+        © <span id="year"></span> 何沐宸 He Muchen ‧ 開南大學資訊管理學系
+    </footer>
+
+    <!-- Interactive Toast Banner -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="vibrant-gradient text-white px-5 py-2.5 rounded-full shadow-lg flex items-center space-x-2.5 text-xs font-bold">
+            <i class="fa-solid fa-circle-check text-white text-sm"></i>
+            <span id="toast-text">已複製成功！</span>
+        </div>
+    </div>
+
+    <!-- Logic Script -->
+    <script>
+        // Set dynamic current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Photo Upload Handling
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('user-photo').src = e.target.result;
+                    showToast('照片更新成功！');
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Copy Text using document.execCommand('copy') for iFrame compatibility
+        function copyText(text, successMsg) {
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = text;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            showToast(successMsg || '已複製至剪貼簿！');
+        }
+
+        // Toast Notification System
+        let toastTimer;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toast-text');
+
+            toastText.textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
